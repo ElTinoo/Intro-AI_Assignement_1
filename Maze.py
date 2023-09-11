@@ -42,14 +42,14 @@ class Maze:
     def __init__(self, graphicsP):
         self.graphics = graphicsP
         self._maze = defaultMaze()
+        # A list that contains all the nodes. The id of each node matches with the placement in the list
         self._nodeList = []
-        self._graph = None
         self._idNode = 0
 
     def mazeToGraph(self):
         print("----------- creating the graph -----------")
 
-        # Create and place all the nodes
+        # ----------------------- Create and place all the nodes -----------------------
         print("creating the nodes...")
 
         def createNode(cooXP, cooYP, changeColor):
@@ -63,7 +63,7 @@ class Maze:
         for y in range(len(self._maze)):
             for x in range(len(self._maze[y])):
                 if self._maze[y][x] == 2 or self._maze[y][x] == 3:  # if it's the starting point or the end point
-                    createNode(x, y, False)
+                    createNode(x, y, False)  # False because I don't want to change the color of the tile
 
                 elif self._maze[y][x] == 0:  # if we are on a blank tile
 
@@ -87,9 +87,9 @@ class Maze:
                         if self._maze[y - 1][x] == 0 or self._maze[y + 1][x] == 0:  # if void top or below
                             createNode(x, y, True)
 
-        # Connect all the nodes together
+        # ----------------------- Connect all the nodes together -----------------------
         print("connecting all the nodes...")
-        for node in self._nodeList:
+        for node in self._nodeList:  # we travel the entire list of the nodes created
 
             # if there is no wall to the left, add the id of the node to its left
             if self._maze[node.cooY][node.cooX - 1] == 0:
@@ -114,10 +114,6 @@ class Maze:
                 while self.nodeList[i].cooX != node.cooX:
                     i += 1
                 node.idNeighbour.append(i)
-
-    @property
-    def graph(self):
-        return self._graph
 
     @property
     def nodeList(self):
