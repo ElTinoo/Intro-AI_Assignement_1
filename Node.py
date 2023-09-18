@@ -4,7 +4,7 @@ class Node:
         self._id = idP
         self._cooX = cooXP
         self._cooY = cooYP
-        self._idNeighbour = []
+        self._idNeighbours = []
 
     @property
     def id(self):
@@ -19,9 +19,9 @@ class Node:
         return self._cooY
 
     @property
-    def idNeighbour(self):
-        return self._idNeighbour
+    def idNeighbours(self):
+        return self._idNeighbours
 
-    @idNeighbour.setter
-    def idNeighbour(self, value):
-        self._idNeighbour.append(value)
+    @idNeighbours.setter
+    def idNeighbours(self, value):
+        self._idNeighbours.append(value)
