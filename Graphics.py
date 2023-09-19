@@ -54,15 +54,21 @@ class Graphics:
             dfs = DFS(self._maze.nodeList, self._maze.startNodeId, self._maze.endNodeId)
             if dfs.verifyPath():
                 labelTime.config(text=f"Time to solve : {dfs.timeToSolve}s")
+                for nodeIdPath in dfs.path:
+                    self.changeTileColorWithText(self._maze.nodeList[nodeIdPath].cooX, self._maze.nodeList[nodeIdPath].
+                                                 cooY, "yellow", self._maze.nodeList[nodeIdPath].id)
             else:
-                tkinter.messagebox.showwarning('Hmm mm', 'No path found ! The maze hase no solution')
+                tkinter.messagebox.showwarning('Hmm mm', 'No path found ! The maze has no solution')
 
         def bfsFunction():  # function linked to the bfd maze button
             bfs = BFS(self._maze.nodeList, self._maze.startNodeId, self._maze.endNodeId)
             if bfs.verifyPath():
                 labelTime.config(text=f"Time to solve : {bfs.timeToSolve}s")
+                for nodeIdPath in bfs.path:
+                    self.changeTileColorWithText(self._maze.nodeList[nodeIdPath].cooX, self._maze.nodeList[nodeIdPath].
+                                                 cooY, "pink", self._maze.nodeList[nodeIdPath].id)
             else:
-                tkinter.messagebox.showwarning('Hmm mm', 'No path found ! The maze hase no solution')
+                tkinter.messagebox.showwarning('Hmm mm', 'No path found ! The maze has no solution')
 
         self._frame2 = Frame(self._window)
         Label(self._frame2, text="Chose the algorythm to start").pack()

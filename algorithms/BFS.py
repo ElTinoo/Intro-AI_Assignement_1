@@ -3,6 +3,7 @@ import time
 
 class BFS:
     def __init__(self, graphP, startIdNodeIdP, endNodeIdP):
+        # Initialization of the BFS class with the graph, start node, and end node
         self._graph = graphP
         self._startNodeId = startIdNodeIdP
         self._endNodeId = endNodeIdP
@@ -32,15 +33,15 @@ class BFS:
             # here we add the neighbour(s) (child(s)) of the current node (parent) to the fifo and save the relation
             # between parent and child with the parentList[]
             for neighbour in nodeP.idNeighbours:
-                if neighbour in visitedNode:  # if the neighbour has already been visited -> do nothing
+                if visitedNode[neighbour]:  # if the neighbour has already been visited -> do nothing
                     pass
                 else:
                     fifo.append(self._graph[neighbour])  # we add the neighbour in the lifo to visit it later
                     parentList[neighbour] = nodeP.id  # add at the child positionId the id of the parent
-            visitedNode.append(nodeP.id)  # we add the current node as visited
+            visitedNode[nodeP.id] = True  # we add the current node as visited
 
         fifo = []  # fifo = first in first out
-        visitedNode = [0] * len(self._graph)  # we store the visited node here
+        visitedNode = [False] * len(self._graph)  # we store the visited node here
         parentList = [-1] * len(self._graph)  # contain -> parentList[child] = parent
 
         fifo.append(self._graph[0])  # we start at some arbitrary node
@@ -76,4 +77,4 @@ class BFS:
 
     @property
     def path(self):
-        return self.path
+        return self._path
