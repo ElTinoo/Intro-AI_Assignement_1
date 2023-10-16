@@ -1,4 +1,4 @@
-from Node import Node
+from algorithms.bfs_dfs.Node import Node
 
 
 def defaultMaze():
